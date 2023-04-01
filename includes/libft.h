@@ -6,113 +6,326 @@
 /*   By: mflores- <mflores-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 17:50:29 by mflores-          #+#    #+#             */
-/*   Updated: 2022/09/13 13:14:10 by mflores-         ###   ########.fr       */
+/*   Updated: 2023/04/01 09:52:44 by mflores-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+/******************************************************************************/
+/*                                                                            */
+/*                                LIBS                                        */
+/*                                                                            */
+/******************************************************************************/
 // General
 # include <unistd.h>
 # include <stdlib.h>
-
-// LIBFT
 # include <string.h>
 # include <stdio.h>
 
-// FT_PRINTF
-# include <stdarg.h>
+/******************************************************************************/
+/*                                                                            */
+/*                              STRUCTURES                                    */
+/*                                                                            */
+/******************************************************************************/
 
-// GNL
-# include <fcntl.h>
+typedef struct s_list	t_list;
 
-// Prototypes LIBFT
-typedef struct s_list
+struct s_list
 {
 	void			*content;
-	struct s_list	*next;
-}					t_list;
+	t_list			*next;
+};
 
+/******************************************************************************/
+/*                                                                            */
+/*                               PROTOTYPES                                   */
+/*                                                                            */
+/******************************************************************************/
+
+/*------------------------------ BOOLEANS -----------------------------------*/
+
+/*
+	Checks for an alphabetic character 
+*/
 int		ft_isalpha(int c);
+
+/*
+	Checks for a digit (0 through 9)
+*/
 int		ft_isdigit(int c);
+
+/*
+	Checks for an alphanumeric character
+*/
 int		ft_isalnum(int c);
+
+/*
+	Checks fot a lowercase character
+*/
 int		ft_islower(int c);
+
+/*
+	Checks for an uppercase letter.
+*/
 int		ft_isupper(int c);
+
+/*
+	Checks whether 'c' is a 7-bit unsigned char value that fits into the
+	ASCII character set
+*/
 int		ft_isascii(int c);
+
+/*
+	Checks for any printable character including space.
+*/
 int		ft_isprint(int c);
-int		ft_toupper(char c);
-int		ft_tolower(char c);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_memcmp(const void *s1, const void *s2, size_t n);
-int		ft_atoi(const char *nptr);
+
+/*
+	Checks if 'c' is a space (\t, \n, \v, \f, \r)
+*/
+int		ft_isspace(int c);
+
+/*---------------------------- END BOOLEANS ----------------------------------*/
+
+/*------------------------------ LISTS ---------------------------------------*/
+
+/*
+	Returns the number of nodes in a linked list
+*/
 int		ft_lstsize(t_list *lst);
 
-char	*ft_strchr(const char *s, int c);
-char	*ft_strrchr(const char *s, int c);
-char	*ft_strnstr(const char *big, const char *little, size_t len);
-char	*ft_strdup(const char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	**ft_split(char const *s, char c);
-char	*ft_itoa(int n);
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strtrim(char const *s1, char const *set);
-
-void	*ft_memset(void *s, int c, size_t n);
-void	ft_bzero(void *s, size_t n);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-void	*ft_memmove(void *dest, const void *src, size_t n);
-void	*ft_memchr(const void *s, int c, size_t n);
-void	*ft_calloc(size_t nmemb, size_t size);
-void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
+/*
+	Adds the node at the beginning of the linked list
+*/
 void	ft_lstadd_front(t_list **lst, t_list *new);
+
+/*
+	Adds the node at the end of the linked list
+*/
 void	ft_lstadd_back(t_list **lst, t_list *new);
+
+/*
+	Frees the allocated memory of the node passed as parameter using
+	the functions del() and free()
+*/
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
+
+/*
+	Deletes and frees the memory allocated of the node passed as parameter
+	and all the following nodes using ft_lstdelone() and free()
+*/
 void	ft_lstclear(t_list **lst, void (*del)(void *));
+
+/*
+	Iterates over a linked list and applies the function passed as parameter
+	to each node of the linked list
+*/
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-size_t	ft_strlen(const char *s);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
-
+/*
+	Allocates memory and returns a new node. On failure returns NULL.
+*/
 t_list	*ft_lstnew(void *content);
+
+/*
+	Returns the last node of the linked list. If empty list, returns NULL.
+*/
 t_list	*ft_lstlast(t_list *lst);
+
+/*
+	Creates and returns a new list resulting from the changes 
+	applied to the contents of each node of the function 'f'
+	On failure, returns NULL.
+*/
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-// Prototypes FT_PRINTF
-# define BASE_DEC "0123456789"
-# define HEXA_MIN "0123456789abcdef"
-# define HEXA_MAJ "0123456789ABCDEF"
-# define NIL_PTR "(nil)"
-# define CONV "cspdiuxX%"
+/*------------------------------ END LISTS --------------------------------*/
 
-int		ft_printf(const char *format, ...);
-int		ft_print_arg(const char *format, int i, va_list args);
-int		ft_printchar(char c);
-int		ft_printstr(char *str);
-int		ft_printnbr(int nbr);
-int		ft_printbase_u(unsigned int nbr, int base, const char *hexa);
-int		ft_printptr_u(unsigned long nbr, int base, const char *hexa);
-int		ft_putptr_u(unsigned long nbr, int base, const char *hexa);
+/*-------------------------------- MEM ------------------------------------*/
 
-// Prototypes GNL
-// Redefine buffer_size if needed with flag -D BUFFER_SIZE=nbr_you_want
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE BUFSIZ
-# endif
+/*
+	Fills the first 'n' bytes of the memory area pointed to by 's' with the
+	constant byte 'c'.
+*/
+void	*ft_memset(void *s, int c, size_t n);
 
-char	*get_next_line(int fd);
-char	*gnl_read_file(int fd, char *stash);
-char	*gnl_get_line(char *stash);
-size_t	gnl_strlen(const char *s);
-char	*gnl_strchr(const char *s, int c);
-char	*gnl_free(char *stash, char *buff);
-char	*gnl_strjoin(char *stash, char *buffer);
-char	*gnl_update_stash(char *old_stash);
+/*
+	Copies 'n' bytes from memory area 'src' to memory area 'dest'.
+*/
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+
+/*
+	Copies 'n' bytes from memory area 'src' to memory area 'dest'
+*/
+void	*ft_memmove(void *dest, const void *src, size_t n);
+
+/*
+	Scans the initial 'n' bytes of the memory area pointed to by 's' for the 
+	first instance of 'c'
+*/
+void	*ft_memchr(const void *s, int c, size_t n);
+
+/*
+	Allocates memory for an array of 'nmmb' elements of 'size' bytes each and
+	returns a pointer to the allocated memory. Memory is set to zero.
+*/
+void	*ft_calloc(size_t nmemb, size_t size);
+
+/*
+	Compares the first 'n' bytes of the memory areas 's1' and 's2'.
+*/
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
+
+/*------------------------------ END MEM -----------------------------------*/
+
+/*------------------------------ STRINGS -----------------------------------*/
+
+/*
+	If 'c' is a lowercase letter, the function returns its 
+	uppercase equivalent otherwise it returns 'c'.
+*/
+int		ft_toupper(char c);
+
+/*
+	If 'c' is an uppercase letter, the function returns its 
+	lowercase equivalent otherwise it returns 'c'.
+*/
+int		ft_tolower(char c);
+
+/*
+	Compares the two strings 's1' and 's2' except it compares only the first
+	(at most) 'n' bytes of 's1' and 's2'.
+*/
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
+/*
+	Converts a string to an integer
+*/
+int		ft_atoi(const char *nptr);
+
+/*
+	Returns a pointer to the first occurrence of the character 'c' in the 
+	string 's'.
+*/
+char	*ft_strchr(const char *s, int c);
+
+/*
+	Returns a pointer to the last occurrence of the character 'c' in the 
+	string 's'.
+*/
+char	*ft_strrchr(const char *s, int c);
+
+/*
+	Locates the first occurrence of the null-terminated string little in the 
+	string 'big', where not more than 'len' characters are searched.
+*/
+char	*ft_strnstr(const char *big, const char *little, size_t len);
+
+/*
+	Returns a pointer to a new string which is a duplicate of the string 's'
+*/
+char	*ft_strdup(const char *s);
+
+/*
+	Allocates and returns a string from the string 's'
+	This new string starts at index 'start' and has a maximum length of 'len'
+*/
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+/*
+	Allocates and returns an array of strings obtained by
+	separating a string 's' using the 'c' character as a delimiter 
+*/
+char	**ft_split(char const *s, char c);
+
+/*
+	Allocates and returns a string representing the integer 'n' received
+	in argument.
+*/
+char	*ft_itoa(int n);
+
+/*
+	Applique la fonction 'f' a chaque caractere de la chaine de caracteres
+	passee en argument pour creer une nouvelle chaine de caracteres resultant 
+	des applications successives de 'f'
+*/
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+
+/*
+	Allocates and return a new string,
+	result of the concatenation of s1 and s2
+*/
+char	*ft_strjoin(char const *s1, char const *s2);
+
+/*
+	Allocates and returns a copy of the string 's1' without the specified characters
+	in 'set' at the beginning and end of the string.
+*/
+char	*ft_strtrim(char const *s1, char const *set);
+
+/*
+	Erases the data in the 'n' bytes of the memory starting at the location
+	pointed to by 's' by writing zeros '\0' to that area.
+*/
+void	ft_bzero(void *s, size_t n);
+
+/*
+	Applies the 'f' function to each character in the string
+	passed as an argument, and passing its index as the first argument
+*/
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+
+/*
+	Writes the character 'c' on the given file descriptor
+*/
+void	ft_putchar_fd(char c, int fd);
+
+/*
+	Writes the string 's' to the given file descriptor
+*/
+void	ft_putstr_fd(char *s, int fd);
+
+/*
+	Write the string 's' to the given file descriptor
+	followed by a newline.
+*/
+void	ft_putendl_fd(char *s, int fd);
+
+/*
+	Writes the integer 'n' to the given file descriptor
+*/
+void	ft_putnbr_fd(int n, int fd);
+
+/*
+	Copies up to 'size' - 1 characters from the NUL-terminated string 'src'
+	to 'dst', NUL-terminating the result.
+*/
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+
+/*
+	Calculates the length of the string pointed to by 's', excluding the 
+	terminating null byte '\0'.
+*/
+size_t	ft_strlen(const char *s);
+
+/*
+	Appends the NUL-terminated string 'src' to the end of 'dst'.
+	It will append at most 'size' - strlen(dst) - 1 bytes, NUL-terminating 
+	the result.
+*/
+size_t	ft_strlcat(char *dst, const char *src, size_t size);
+
+/*-------------------------- END STRINGS -----------------------------------*/
+
+/*----------------------------- OHTER --------------------------------------*/
+
+/*
+	Returns the absolute value.
+*/
+int		ft_abs(int nb);
+
+/*--------------------------- END OHTER ------------------------------------*/
 
 #endif
