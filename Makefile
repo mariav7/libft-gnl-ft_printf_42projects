@@ -6,7 +6,7 @@
 #    By: mflores- <mflores-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 19:55:59 by mflores-          #+#    #+#              #
-#    Updated: 2023/11/14 15:21:52 by mflores-         ###   ########.fr        #
+#    Updated: 2023/11/14 18:36:18 by mflores-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ all: header $(NAME)
 	@echo "\n$(BOLD)$(GREEN)[ ✔ ]\tLIBFT$(RESET)"
 
 $(NAME): $(HEADER) $(OBJS)
-		@ar rc $(NAME) $(OBJS)
+		@ar rcs $(NAME) $(OBJS)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@mkdir -p $(OBJS_FOLDERS)
