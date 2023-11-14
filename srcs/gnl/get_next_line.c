@@ -109,7 +109,7 @@ char	*get_next_line(int fd)
 	static char	*stash[1024];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
 		return (NULL);
 	stash[fd] = gnl_read_file(fd, stash[fd]);
 	if (!stash[fd])

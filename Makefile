@@ -6,7 +6,7 @@
 #    By: mflores- <mflores-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 19:55:59 by mflores-          #+#    #+#              #
-#    Updated: 2023/04/01 09:54:37 by mflores-         ###   ########.fr        #
+#    Updated: 2023/11/14 15:21:52 by mflores-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,21 +79,30 @@ DEPS		= $(addprefix $(OBJS_PATH), $(SRCS_NAMES:.c=.d))
 #------------------------------------------------------------------------------#
 #								BASCIC RULES	        				       #
 #------------------------------------------------------------------------------#
-all:	$(NAME)
+all: header $(NAME)
+	@echo "\n$(BOLD)$(GREEN)[ ✔ ]\tLIBFT$(RESET)"
 
-$(NAME):	$(HEADER) $(OBJS)
+$(NAME): $(HEADER) $(OBJS)
 		@ar rc $(NAME) $(OBJS)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@mkdir -p $(OBJS_FOLDERS)
 	@$(CC) $(FLAGS) $(HEADER_INC) -MMD -o $@ -c $<
-	@printf "$(YELLOW). . . COMPILING LIBFT OBJECTS . . . $(GREY)%-33.33s\r$(WHITE)" $@
+	@printf "$(YELLOW). . . compiling $(NAME) objects . . . $(GREY)%-33.33s\r$(WHITE)" $@
 
 clean:
-	@$(RM) -rd $(OBJS_PATH)
+	@if [ -d "$(OBJS_PATH)" ]; then \
+		echo "$(YELLOW). . . cleaning $(NAME) objects . . .$(RESET)"; \
+		$(RM) -rd $(OBJS_PATH); \
+	fi
+	@echo "$(BOLD)$(GREEN)[ ✔ ]\tLIBFT OBJECTS CLEANED$(RESET)"
 
 fclean:	clean
-	@$(RM) $(NAME)
+	@if [ -e $(NAME) ]; then \
+		echo "$(YELLOW). . . deleting $(NAME) . . .$(RESET)"; \
+		$(RM) $(NAME); \
+	fi
+	@echo "$(BOLD)$(GREEN)[ ✔ ]\tLIBFT CLEANED$(RESET)"
 
 re:	fclean all
 
@@ -104,11 +113,25 @@ re:	fclean all
 #------------------------------------------------------------------------------#
 #								CUSTOM RULES    					           #
 #------------------------------------------------------------------------------#
+AUTHOR = https://github.com/mariav7
 
-norme:
-	norminette $(HEADER_PATH) $(SRCS_PATH)
+define HEADER_PROJECT
 
-#Colors
+	██      ██ ██████  ███████ ████████ 
+	██      ██ ██   ██ ██         ██    
+	██      ██ ██████  █████      ██    
+	██      ██ ██   ██ ██         ██    
+	███████ ██ ██████  ██         ██    
+																																	
+endef
+export HEADER_PROJECT
+
+header:
+	clear
+	@echo "$(CYAN)$$HEADER_PROJECT $(RESET)"
+	@printf "$(MAGENTA)%15s Coded by:$(WHITE) \e]8;;$(AUTHOR)\e\\mflores-\e]8;;\e\\ $(RESET)\n\n"
+
+# COLORS
 DEF_COLOR = \033[0;39m
 GREY = \033[0;90m
 RED = \033[0;91m
@@ -118,3 +141,10 @@ BLUE = \033[0;94m
 MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
+
+# FORMAT
+BOLD = \033[1m
+ITALIC = \033[3m
+UNDERLINE = \033[4m
+STRIKETHROUGH = \033[9m
+BLINK	= \033[5m
