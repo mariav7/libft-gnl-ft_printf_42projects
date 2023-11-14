@@ -15,9 +15,9 @@ NOTE: This repository contains three projects in total, all combined to create o
 
 [**Subject PDF**]()
 
-The Libft project focuses on building a personal [C](https://en.cppreference.com/w/c/language) library, which includes recreating standard functions from the [C library](https://cplusplus.com/reference/clibrary/), as well as additional utility functions that can be useful in future 42 projects.
+The Libft project focuses on building a personal [C library](https://cplusplus.com/reference/clibrary/), which includes recreating standard functions from the C library, as well as additional functions that can be useful for future 42 projects.
 
-This project served as a foundational exercise in C programming, requiring the implementation of a wide range of functions such as string manipulation, memory allocation, and list management. It encourages a deep understanding of basic data structures and algorithms.
+This project served as a foundational exercise in [C programming](https://en.cppreference.com/w/c/language), requiring the implementation of a wide range of functions such as string manipulation, memory allocation, and list management. It improves a deep understanding of basic data structures and algorithms.
 
 ## Ft_printf
 
