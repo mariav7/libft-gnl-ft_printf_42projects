@@ -16,10 +16,10 @@ int main(void)
     ft_printf("%s\n", str); //ft_printf.h
 
 	fd = open("example.c", O_RDONLY);
-    if (fd == -1)
-        return (1);
+	if (fd == -1)
+	return (1);
 	line = get_next_line(fd); // gnl.h
-    i = 0;
+	i = 0;
 	while (line != NULL)
 	{
 		ft_printf("line [%d] : %s", ++i, line);
@@ -28,5 +28,5 @@ int main(void)
 	}
 	close(fd);
 
-    return (0);
+	return (0);
 }
