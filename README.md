@@ -40,19 +40,19 @@ This project improves file input/output handling skills and reinforces concepts 
 ### Library structure
 
 * Libft functions:
-<div align="center">
-    <img src="misc/libft-files.jpg" width="100%" />
-</div>
+```bash
+tree srcs/bool srcs/lists srcs/mem srcs/other srcs/strings
+```
 
 * Get_next_line functions:
-<div align="center">
-    <img src="misc/gnl-files.jpg" width="100%" />
-</div>
+```bash
+tree srcs/gnl
+```
 
 * Ft_printf functions:
-<div align="center">
-    <img src="misc//ft_printf-files.jpg" width="100%" />
-</div>
+```bash
+tree srcs/ft_printf
+```
 
 ---
 
