@@ -13,7 +13,7 @@ NOTE: This repository contains three projects in total, all combined to create o
 
 ## Libft
 
-[**Subject PDF**]()
+[**Subject PDF**](misc/en.libft.pdf)
 
 The Libft project focuses on building a personal [C library](https://cplusplus.com/reference/clibrary/), which includes recreating standard functions from the C library, as well as additional functions that can be useful for future 42 projects.
 
@@ -21,7 +21,7 @@ This project served as a foundational exercise in [C programming](https://en.cpp
 
 ## Ft_printf
 
-[**Subject PDF**]()
+[**Subject PDF**](misc/en.ft_printf.pdf)
 
 The ft_printf project is an introduction to [variadic functions](https://en.cppreference.com/w/c/variadic#:~:text=Variadic%20functions%20are%20functions%20(e.g.,%2C%20...)%3B.) that requires the implementation of our own [printf](https://cplusplus.com/reference/cstdio/printf/) function, which is used for formatted output.
 
@@ -29,7 +29,7 @@ This project challenge involves parsing format strings, managing variable argume
 
 ## Get_next_line
 
-[**Subject PDF**]()
+[**Subject PDF**](misc/en.gnl.pdf)
 
 The objective of get_next_line is to create a function that reads a line from a [file descriptor](https://en.wikipedia.org/wiki/File_descriptor). It should be able to handle reading from multiple file descriptors without losing the reading thread for any of them.
 
